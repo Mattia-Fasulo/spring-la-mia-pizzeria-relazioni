@@ -10,6 +10,7 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
+    @Column(unique = true)
     private String name;
 
     public Integer getId() {
