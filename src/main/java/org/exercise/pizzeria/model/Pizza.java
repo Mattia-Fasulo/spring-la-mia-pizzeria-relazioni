@@ -35,7 +35,7 @@ import java.util.Set;
 
     @ManyToMany
     @JoinTable(
-            name = "category_pizza",
+            name = "ingredient_pizza",
             joinColumns = @JoinColumn(name = "pizza_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id")
     )

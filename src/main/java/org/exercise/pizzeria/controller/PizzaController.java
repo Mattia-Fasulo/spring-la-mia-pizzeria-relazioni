@@ -96,6 +96,7 @@ public class PizzaController {
             return "/pizzas/create";
         }
 
+        System.out.println(formPizza.getIngredients());
         pizzaService.createPizza(formPizza);
         return "redirect:/pizzas";
     }

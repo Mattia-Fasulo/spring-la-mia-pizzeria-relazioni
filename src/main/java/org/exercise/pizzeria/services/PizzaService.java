@@ -61,6 +61,7 @@ public class PizzaService {
         pizzaToPersist.setPrice(formPizza.getPrice());
         pizzaToPersist.setImgPath(formPizza.getImgPath());
         pizzaToPersist.setCreatedAt(LocalDateTime.now());
+        pizzaToPersist.setIngredients(formPizza.getIngredients());
         return  pizzaRepository.save(pizzaToPersist);
 
     }
