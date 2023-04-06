@@ -30,6 +30,17 @@
           >PIZZAS
           </a>
         </li>
+
+        <li class="nav-item">
+          <a
+                  th:href="@{/ingredients}"
+                  class="nav-link text-light"
+                  th:classAppend="${current == 'ingredients'} ? active : 'not-active'"
+                  aria-current="page"
+          >INGREDIENTS
+          </a>
+        </li>
+
         <li class="nav-item">
           <a
                   th:href="@{/pizzas/search}"

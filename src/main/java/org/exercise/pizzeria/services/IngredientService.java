@@ -16,4 +16,10 @@ public class IngredientService {
     public List<Ingredient> getAll(){
         return ingredientRepository.findAll(Sort.by("name"));
     }
+
+    public Ingredient create(Ingredient formIngredient){
+        Ingredient ingredientToPersist = new Ingredient();
+        ingredientToPersist.setName(formIngredient.getName());
+        return ingredientRepository.save(ingredientToPersist);
+    }
 }
