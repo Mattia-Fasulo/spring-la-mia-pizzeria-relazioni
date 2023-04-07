@@ -72,6 +72,7 @@ public class PizzaService {
         pizzaToUpdate.setDescription(formPizza.getDescription());
         pizzaToUpdate.setPrice(formPizza.getPrice());
         pizzaToUpdate.setImgPath(formPizza.getImgPath());
+        pizzaToUpdate.setIngredients(formPizza.getIngredients());
         return pizzaRepository.save(pizzaToUpdate);
     }
 
