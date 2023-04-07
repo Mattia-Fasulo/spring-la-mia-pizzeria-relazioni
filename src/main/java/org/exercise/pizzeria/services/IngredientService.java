@@ -44,4 +44,14 @@ public class IngredientService {
     public boolean isValidName(Ingredient ingredient){
         return !ingredientRepository.existsByName(ingredient.getName());
     }
+
+    public boolean deleteById(Integer id) throws IngredientNotFoundException{
+        ingredientRepository.findById(id).orElseThrow(()->new IngredientNotFoundException(Integer.toString(id)));
+        try{
+            ingredientRepository.deleteById(id);
+            return true;
+        } catch(Exception e){
+            return false;
+        }
+    }
 }

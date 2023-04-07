@@ -2,6 +2,7 @@ package org.exercise.pizzeria.controller;
 
 import jakarta.validation.Valid;
 import org.exercise.pizzeria.exceptions.IngredientNotFoundException;
+import org.exercise.pizzeria.model.AlertMessage;
 import org.exercise.pizzeria.model.Ingredient;
 import org.exercise.pizzeria.services.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/ingredients")
@@ -81,4 +83,28 @@ public class IngredientController {
         }
 
     }
+
+    @GetMapping("/delete/{id}")
+    public String delete(
+            @PathVariable Integer id,
+            RedirectAttributes redirectAttributes
+    ){
+        try {
+            boolean success = ingredientService.deleteById(id);
+            if(success){
+                    redirectAttributes.addFlashAttribute("message",
+                            new AlertMessage(AlertMessage.AlertMessageType.SUCCESS, "Ingredient with id " + id + " deleted"));
+            } else {
+                    redirectAttributes.addFlashAttribute("message",
+                            new AlertMessage(AlertMessage.AlertMessageType.ERROR, "Unable to delete ingredient with id " + id));
+            }
+
+        } catch(IngredientNotFoundException e){
+            redirectAttributes.addFlashAttribute("message",
+                    new AlertMessage(AlertMessage.AlertMessageType.ERROR, "Ingredient with id " + id + " not found"));
+        }
+        return "redirect:/ingredients";
+    }
+
+
 }

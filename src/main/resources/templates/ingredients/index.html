@@ -8,7 +8,7 @@
 <th:block th:replace="/fragments/navbar :: navbar('ingredients', '', false)"></th:block>
 <div class="container">
 
-    <!-- leggo la variabile message (flashAttribute) -->
+
     <th:block th:if="${message}">
         <div th:replace="~{/fragments/alert :: alert(${message.type}, ${message.text})}"></div>
     </th:block>
@@ -19,7 +19,7 @@
                 <li class="list-group-item d-flex justify-content-between" th:each="item : ${list}">
                     <h5 th:text="${item.name}"></h5>
                     <div>
-                        <a th:href="@{|/ingredients/delete/*{id}|}" class="btn btn-secondary btn-sm" title="delete">
+                        <a th:href="@{|/ingredients/delete/${item.getId()}|}" class="btn btn-secondary btn-sm" title="delete">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
                         <a th:href="@{/ingredients/edit(ingredientId=${item.getId()})}" class="btn btn-secondary btn-sm" title="edit">
